@@ -23,7 +23,7 @@ def start():
 
     if 'message' in checkin.text:
         mess = checkin.json()['message']
-        time = state.json()['data']['leftDays']
+        # time = state.json()['data']['leftDays']
         time = time.split('.')[0]
         print(time)
         if sever == 'on':
