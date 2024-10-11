@@ -19,10 +19,20 @@ jobs:
       run: |
         sudo apt update && \
         sudo apt install python3
-      
-    - name: requirements
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.1' 
+        
+    - name: Install dependencies
       run: |
-        pip3 install -r requirements.txt
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      
+    # - name: requirements
+    #   run: |
+    #     pip3 install -r requirements.txt
         
     - name: Checkin
       run: |
