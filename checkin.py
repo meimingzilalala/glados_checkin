@@ -16,43 +16,18 @@ def start():
     url2= "https://glados.rocks/api/user/status"
     referer = 'https://glados.rocks/console/checkin'
     myHeaders = {
-        # 核心认证信息
-        "authority": "glados.rocks",
-        "authorization": "12833298897138375142270069988788-864-1536",
+        "authorization": "Bearer 12833298897138375142270069988788-864-1536",
         "cookie": cookie,
-        
-        # 内容类型
-        "content-type": "application/json;charset=UTF-8",
-        
-        # 安全相关头
-        "origin": "https://glados.rocks",
-        "referer": "https://glados.rocks/console/checkin",
-        "sec-ch-ua": '"Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": '"Windows"',
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        
-        # 标准头
-        "accept": "application/json, text/plain, */*",
-        "accept-encoding": "gzip, deflate, br, zstd",
-        "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
-        "dnt": "1",
-        "priority": "u=1, i",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0"
     }
     # checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer },data={"token": "glados.one" })
     checkin = requests.post(url,headers=myHeaders,data={"token": "glados.one" })
-    state =  requests.get(url2,headers=myHeaders)
     print(checkin.json())
+    state =  requests.get(url2,headers=myHeaders)
 
     if 'message' in checkin.text:
         mess = checkin.json()['message']
-        print(state.json())
-        time = '100'
-        # time = state.json()['data']['leftDays']
-        # time = time.split('.')[0]
+        time = state.json()['data']['leftDays']
+        time = time.split('.')[0]
         print(time)
         if sever == 'on':
             requests.get('https://sctapi.ftqq.com/' + sckey + '.send?text='+mess+'，' + time)
