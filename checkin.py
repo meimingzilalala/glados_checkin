@@ -34,7 +34,7 @@ def start():
     if 'message' in checkin.text:
         mess = checkin.json()['message']
         print(state.json())
-        time = 100
+        time = '100'
         # time = state.json()['data']['leftDays']
         # time = time.split('.')[0]
         print(time)
