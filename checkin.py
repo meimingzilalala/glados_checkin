@@ -15,8 +15,8 @@ def start():
     url2= "https://glados.rocks/api/user/status"
     referer = 'https://glados.rocks/console/checkin'
     myHeaders = {
-        "authorization": "Bearer 12833298897138375142270069988788-864-1536",
-        "cookie": cookie,
+        # "authorization": "Bearer 12833298897138375142270069988788-864-1536",
+        "cookie": cookie
     }
     # checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer },data={"token": "glados.one" })
     checkin = requests.post(url,headers=myHeaders,data={"token": "glados.one" })
