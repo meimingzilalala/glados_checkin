@@ -17,7 +17,18 @@ def start():
     referer = 'https://glados.rocks/console/checkin'
     # checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer },data={"token": "glados.one" })
     checkin = requests.post(url,headers={'cookie': cookie },data={"token": "glados.one" })
-    state =  requests.get(url2,headers={'cookie': cookie })
+    state =  requests.get(url2,headers={'accept': 'application/json, text/plain, */*',
+                                        'accept-encoding': 'gzip, deflate, br, zstd',
+                                        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+                                        'authorization': '12833298897138375142270069988788-864-1536',
+                                        'cookie': cookie,
+                                        'dnt': '1',
+                                        'priority': 'u=1, i',
+                                        'sec-ch-ua': '"Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"',
+                                        'sec-ch-ua-mobile': '?0',
+                                        'sec-ch-ua-platform': '"Windows"',
+                                        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0'
+                                       })
     print(checkin.json())
 
     if 'message' in checkin.text:
