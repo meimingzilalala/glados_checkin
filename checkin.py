@@ -28,6 +28,7 @@ def start():
         time = state.json()['data']['leftDays']
         time = time.split('.')[0]
         print(time)
+        
         if sever == 'on':
             requests.get('https://sctapi.ftqq.com/' + sckey + '.send?text='+mess+'，' + time)
     else:
