@@ -10,9 +10,9 @@ cookie = os.environ["COOKIE"]
 
 def start():
     
-    url= "https://glados.rocks/api/user/checkin"
-    url2= "https://glados.rocks/api/user/status"
-    referer = 'https://glados.rocks/console/checkin'
+    url= "https://glados.cloud/api/user/checkin"
+    url2= "https://glados.cloud/api/user/status"
+    referer = 'https://glados.cloud/console/checkin'
     myHeaders = {
         # "authorization": "Bearer 12833298897138375142270069988788-864-1536",
         "cookie": cookie
