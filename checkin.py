@@ -18,7 +18,7 @@ def start():
         "cookie": cookie
     }
     # checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer },data={"token": "glados.one" })
-    checkin = requests.post(url,headers=myHeaders,data={"token": "glados.one" })
+    checkin = requests.post(url,headers=myHeaders,data={"token": "glados.cloud" })
     print(checkin.json())
     state =  requests.get(url2,headers=myHeaders)
 
