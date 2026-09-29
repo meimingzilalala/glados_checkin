@@ -15,19 +15,30 @@ def start():
     url2= "https://glados.network/api/user/status"
     referer = 'https://glados.network/console/checkin'
     myHeaders = {
-        # "authorization": "Bearer 12833298897138375142270069988788-864-1536",
-        "cookie": cookie
+        "cookie": cookie,
+        "accept": "application/json, text/plain, */*",
+        "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
+        "content-type": "application/json;charset=UTF-8",
+        "origin": "https://glados.network",
+        "referer": "https://glados.network/console/checkin",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "sec-ch-ua": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": '"Windows"',
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "same-origin",
     }
     # checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer },data={"token": "glados.one" })
     # checkin = requests.post(url,headers=myHeaders,data={"token": "glados.network" })
     # 使用 impersonate 参数指定要模拟的浏览器
     session = requests.Session()
     # 模拟 Chrome 的 TLS 指纹
-    checkin = session.post(
+    checkin = requests.post(
         url,
-        headers={"cookie": cookie},
-        data={"token": "glados.network"},
-        impersonate="chrome"  # 关键：伪装 Chrome TLS 指纹
+        headers=myHeaders,
+        data='{"token": "glados.network"}',
+        impersonate="chrome131",  # 与 UA 中的版本一致
     )
     print(checkin.json())
     state =  requests.get(url2,headers=myHeaders)
