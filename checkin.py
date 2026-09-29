@@ -1,4 +1,4 @@
-import requests,json,os
+import json,os
 # server酱开关，填off不开启(默认)，填on同时开启cookie失效通知和签到成功通知
 sever = os.environ["SERVE"]
 # 填写server酱sckey,不开启server酱则不用填
@@ -7,6 +7,7 @@ sckey = os.environ["SCKEY"]
 # 填入glados账号对应cookie
 cookie = os.environ["COOKIE"]
 #'__cfduid=d3459ec306384ca67a65170f8e2a5bd561593049467; _ga=GA1.2.766373509.1593049472; _gid=GA1.2.1338236108.1593049472; koa:sess=eyJ1c2VySWQiOjQxODMwLCJfZXhwaXJlIjoxNjE4OTY5NTI4MzY4LCJfbWF4QWdlIjoyNTkyMDAwMDAwMH0=; koa:sess.sig=6qG8SyMh_5KpSB6LBc9yRviaPvI'
+from curl_cffi import requests
 
 def start():
     
@@ -18,7 +19,16 @@ def start():
         "cookie": cookie
     }
     # checkin = requests.post(url,headers={'cookie': cookie ,'referer': referer },data={"token": "glados.one" })
-    checkin = requests.post(url,headers=myHeaders,data={"token": "glados.network" })
+    # checkin = requests.post(url,headers=myHeaders,data={"token": "glados.network" })
+    # 使用 impersonate 参数指定要模拟的浏览器
+    session = requests.Session()
+    # 模拟 Chrome 的 TLS 指纹
+    response = session.post(
+        url,
+        headers={"cookie": cookie},
+        data={"token": "glados.network"},
+        impersonate="chrome"  # 关键：伪装 Chrome TLS 指纹
+    )
     print(checkin.json())
     state =  requests.get(url2,headers=myHeaders)
 
