@@ -23,7 +23,7 @@ def start():
     # 使用 impersonate 参数指定要模拟的浏览器
     session = requests.Session()
     # 模拟 Chrome 的 TLS 指纹
-    response = session.post(
+    checkin = session.post(
         url,
         headers={"cookie": cookie},
         data={"token": "glados.network"},
